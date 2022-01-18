@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from "react-bootstrap";
+import Placecard from "./Placecard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
@@ -36,81 +36,11 @@ const Placewindow = () => {
                         alignItems: "center",
                     }}
                 >
-                    <div>
-                        <Card style={{ margin: "auto 2vw" }}>
-                            <Card.Img
-                                variant="top"
-                                src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                            />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up
-                                    the bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div>
-                        <Card style={{ margin: "auto 2vw" }}>
-                            <Card.Img
-                                variant="top"
-                                src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                            />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up
-                                    the bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div>
-                        <Card style={{ margin: "auto 2vw" }}>
-                            <Card.Img
-                                variant="top"
-                                src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                            />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up
-                                    the bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div>
-                        <Card style={{ margin: "auto 2vw" }}>
-                            <Card.Img
-                                variant="top"
-                                src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                            />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up
-                                    the bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div>
-                        <Card style={{ margin: "auto 2vw" }}>
-                            <Card.Img
-                                variant="top"
-                                src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                            />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up
-                                    the bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
+                    <Placecard/>
+                    <Placecard/>
+                    <Placecard/>
+                    <Placecard/>
+                    <Placecard/>
                     <div
                         style={{
                             height: "16rem",

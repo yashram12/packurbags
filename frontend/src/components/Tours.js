@@ -1,6 +1,12 @@
-import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import {useState} from "react";
+import { Container, Row,Col} from "react-bootstrap";
+import Cardcomp from "./tours/Cardcomp";
+import Addtour from "./tours/Addtour";
+
 const Tours = () => {
+
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <>
       <div style={{justifyContent:"center",height:"25vh",backgroundColor:"#c6ecc6",display:"flex",alignItems:"center"}}>
@@ -11,176 +17,22 @@ const Tours = () => {
         style={{ maxWidth: "none", padding: "4vw" }}
       >
         <Row>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
-          <Col xl={3} lg={3} sm={6} xs={12} style={{ padding: "1rem 1rem" }}>
-            <p>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </p>
-          </Col>
+        <Col>
+          <span
+            onClick={() => setModalShow(true)}
+            style={{ float: "right", color: "blue", cursor: "pointer" }}
+          >
+            +Add
+          </span>
+        </Col>
+        <Addtour show={modalShow} onHide={() => setModalShow(false)}/>
+        </Row>
+        <Row>
+          <Cardcomp/>
+          <Cardcomp/>
+          <Cardcomp/>
+          <Cardcomp/>
+          <Cardcomp/>
         </Row>
       </Container>
     </>

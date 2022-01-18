@@ -2,7 +2,7 @@ import {Row,Col} from "react-bootstrap"
 
 const Footer = () => {
     return (
-        <div style={{backgroundColor:"#198754",color:"white",maxWidth:"100vw",height:"20vh",bottom:"0",width:"100vw",padding:"5px"}}>
+        <div style={{position:"relative",backgroundColor:"#198754",color:"white",maxWidth:"100vw",height:"20vh",bottom:"0",width:"100%",padding:"5px"}}>
             <Row>
                 <Col  style={{display:"flex",justifyContent:"center",fontSize:"1.5rem"}}>PaCkUrBaGs</Col>
                 <Col  style={{display:"flex",justifyContent:"center",fontSize:"1.25rem"}}>

@@ -72,7 +72,7 @@ app.post("/api/v1/register", async (req, res) => {
                         });
                         
                         res.status(200).json({
-                            message: "User Registerd Successfully :) ",
+                            message: "User Registered Successfully :) ",
                         });
                     }
                 });
@@ -110,7 +110,7 @@ app.post('/api/v1/login',async (req,res) =>{
             const valid = await bcrypt.compare(password,result[0].PASSWORD);
             if(valid){
                 const token = jwt.sign({id: result[0].USER_ID},'secret',{expiresIn:3600})
-                res.status(200).json({message:'User logged in successfully...:)',token});
+                res.status(200).json({status:'success',message:'User logged in successfully...:)',token});
             }
             else    
                 res.status(401).json({message:'Incorrect Password'});
