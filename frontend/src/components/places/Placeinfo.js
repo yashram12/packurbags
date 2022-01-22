@@ -4,12 +4,12 @@ const Placeinfo = ({title,desc}) => {
     return (
         <div>
             <Row>
-        <h3>{title}</h3>
+        <h3>{title && title}</h3>
       </Row>
       <Row>
         <Col>
           <p>
-            {desc}
+            {desc && desc}
           </p>
         </Col>
       </Row>

@@ -36,6 +36,7 @@ const Logincomp = ({ handlereg }) => {
         }
         else{
           setErr("Invalid Credentials...")
+          setUser({ email: "", pass: "" })
         }
       });
   };

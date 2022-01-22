@@ -1,10 +1,12 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import Tripcard from "./Tripcard";
 
 const Tripwindow = () => {
+  const [trips, setTrips] = useState([]);
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -24,6 +26,15 @@ const Tripwindow = () => {
       items: 1,
     },
   };
+
+  useEffect(() => {
+    fetch("/api/v1/tours")
+      .then((response) => response.json())
+      .then((json) => {
+        setTrips(json.data);
+      });
+  }, []);
+
   return (
     <div
       className="tripContainer"
@@ -39,11 +50,13 @@ const Tripwindow = () => {
           alignItems: "center",
         }}
       >
-       <Tripcard/>
-       <Tripcard/>
-       <Tripcard/>
-       <Tripcard/>
-       <Tripcard/>
+
+        <Tripcard trip={trips[0]} />
+        <Tripcard trip={trips[1]} />
+        <Tripcard trip={trips[2]} />
+        <Tripcard trip={trips[3]} />
+        <Tripcard trip={trips[4]} />
+
         <div
           style={{
             height: "16rem",
@@ -53,7 +66,7 @@ const Tripwindow = () => {
             alignItems: "center",
           }}
         >
-          <Link to="/tours" style={{textDecoration:"none"}}>
+          <Link to="/tours" style={{ textDecoration: "none" }}>
             <div
               style={{
                 backgroundColor: "#198754",

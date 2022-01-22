@@ -18,6 +18,8 @@ const Mapcontainer = ({ list }) => {
   
 const [hovered, setHovered] = useState({});
 
+const [myLoc,setMyLoc] =useState({});
+
 
   
   return (
@@ -26,12 +28,20 @@ const [hovered, setHovered] = useState({});
         mapContainerStyle={mapStyles}
         zoom={9}
         center={list[Math.floor(list.length / 2)].coordinates}
-      >
+        onClick={()=>setHovered({})}
+      > 
+
+        {navigator.geolocation && navigator.geolocation.getCurrentPosition((pos)=>{
+          setMyLoc({lat:pos.coords.latitude,lng:pos.coords.longitude})
+        })}
+
+
+        <Marker key={-1} position={myLoc && myLoc} onMouseOver={()=>setHovered({placeId:-1,name:"My Location",coordinates:(myLoc && myLoc),star:-1})} onMouseDown={()=>setHovered({})} />
         
-        {list.map((item) => {
+        {list.map((item,i) => {
           return (
             <Marker
-              key={item.name}
+              key={i}
               position={item.coordinates}
               onMouseOver={()=>setHovered(item)}
               onMouseDown={()=>setHovered({})}

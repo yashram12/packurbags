@@ -1,4 +1,4 @@
-import { Modal, Button, Container,Row,Col } from "react-bootstrap";
+import { Modal, Button, Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 
 const Addplace = (props) => {
@@ -6,20 +6,45 @@ const Addplace = (props) => {
     imgSrc: "",
     name: "",
     location: "",
-    coordinates: { lat: 0, lgn: 0 },
+    coordinates: { lat: 0, lng: 0 },
     data: [{ title0: "", desc0: "" }],
     star: 0,
   });
 
   const handleSubmit = (e) => {
+    let info = {
+      imgSrc: newPlace.imgSrc.replace("'", String.raw`\'`),
+      name: newPlace.name.replace("'", String.raw`\'`),
+      location: newPlace.location.replace("'", String.raw`\'`),
+      coordinates: newPlace.coordinates,
+      data: newPlace.data,
+      star: newPlace.star,
+    };
     e.preventDefault();
     //code on submit
+    fetch("/api/v1/place", {
+      // Adding method type
+      method: "POST",
+
+      // Adding body or contents to send
+      body: JSON.stringify(info),
+
+      // Adding headers to the request
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      // Converting to JSON
+      .then((response) => response.json())
+
+      // Displaying results to console
+      .then((json) => alert(json.message));
     props.onHide();
     setNewPlace({
       imgSrc: "",
       name: "",
       location: "",
-      coordinates: { lat: 0, lgn: 0 },
+      coordinates: { lat: 0, lng: 0 },
       data: [{ title0: "", desc0: "" }],
       star: 0,
     });
@@ -32,7 +57,7 @@ const Addplace = (props) => {
       temp = newPlace.data;
       temp[parseInt(name.slice(-1))][name] = value;
       setNewPlace({ ...newPlace, data: temp });
-    } else if (name === "lat" || name === "lgn") {
+    } else if (name === "lat" || name === "lng") {
       setNewPlace({
         ...newPlace,
         coordinates: { ...newPlace.coordinates, [name]: value },
@@ -141,48 +166,55 @@ const Addplace = (props) => {
           </Container>
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <span className="me-4" style={{cursor:"pointer",color:"blue"}} onClick={() => addcontent()}>+ Add more Content</span>
+            <span
+              className="me-4"
+              style={{ cursor: "pointer", color: "blue" }}
+              onClick={() => addcontent()}
+            >
+              + Add more Content
+            </span>
           </div>
 
           <Container>
-              <Row className="ms-3">
-                  Co-Ordinates
-              </Row>
+            <Row className="ms-3">Co-Ordinates</Row>
             <Row>
               <Col>
                 <div className="form-group m-2">
-                    <label htmlFor='lat'>Latitude</label>
+                  <label htmlFor="lat">Latitude</label>
                   <input
                     name="lat"
                     type="number"
                     step="0.0000001"
-                    id='lat'
+                    id="lat"
                     className="form-control"
                     placeholder="Latitude"
                     value={newPlace.coordinates.lat}
                     autoComplete="off"
                     onChange={(e) => handleChange(e.target)}
+                    required
                   />
                 </div>
               </Col>
               <Col>
                 <div className="form-group m-2">
-                    <label htmlFor='lgn'>Longitude</label>
+                  <label htmlFor="lng">Longitude</label>
                   <input
-                    name="lgn"
+                    name="lng"
                     type="number"
-                    id='lgn'
+                    id="lng"
                     step="0.0000001"
                     className="form-control"
                     placeholder="Longitude"
-                    value={newPlace.coordinates.lgn}
+                    value={newPlace.coordinates.lng}
                     autoComplete="off"
                     onChange={(e) => handleChange(e.target)}
+                    required
                   />
                 </div>
               </Col>
             </Row>
           </Container>
+          {/* <div style={{ color: "gainsboro", marginTop: "1vh" ,fontSize:"14px",marginBottom:'2rem' }}>{err}</div> */}
         </Modal.Body>
         <Modal.Footer>
           <button type="submit" className="btn btn-success">

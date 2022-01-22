@@ -1,16 +1,41 @@
-import {useState} from "react";
-import { Container, Row ,Col} from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import {useNavigate} from 'react-router-dom';
 import Cardcomp from "./places/Cardcomp";
-import Addplace from './places/Addplace'
+import Addplace from "./places/Addplace";
 
 const Places = () => {
-
+  const [places, setPlaces] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const history = useNavigate();
 
+  useEffect(() => {
+    fetch("/api/v1/places")
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.status === "success") setPlaces(json.data);
+      });
+  },[]);
+
+  const handleAddplace = ()=>{
+    setModalShow(true)
+    if(localStorage.getItem('pubtoken') === null){
+      history('/login')
+      alert("Please Login to add a Review")
+    }
+  }
 
   return (
     <>
-      <div style={{justifyContent:"center",height:"25vh",backgroundColor:"#c6ecc6",display:"flex",alignItems:"center"}}>
+      <div
+        style={{
+          justifyContent: "center",
+          height: "25vh",
+          backgroundColor: "#c6ecc6",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <h1>Special Places for you</h1>
       </div>
       <Container
@@ -18,22 +43,20 @@ const Places = () => {
         style={{ maxWidth: "none", padding: "4vw" }}
       >
         <Row>
-        <Col>
-          <span
-            onClick={() => setModalShow(true)}
-            style={{ float: "right", color: "blue", cursor: "pointer" }}
-          >
-            +Add
-          </span>
-        </Col>
-        <Addplace show={modalShow} onHide={() => setModalShow(false)}/>
+          <Col>
+            <span
+              onClick={() => handleAddplace()}
+              style={{ float: "right", color: "blue", cursor: "pointer" }}
+            >
+              +Add
+            </span>
+          </Col>
+          <Addplace show={modalShow} onHide={() => setModalShow(false)} />
         </Row>
         <Row>
-          <Cardcomp/>
-          <Cardcomp/>
-          <Cardcomp/>
-          <Cardcomp/>
-          <Cardcomp/>
+          {places.map((place,i) => {
+            return <Cardcomp key={i} place={place} />;
+          })}
         </Row>
       </Container>
     </>

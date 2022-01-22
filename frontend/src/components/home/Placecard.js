@@ -1,20 +1,29 @@
-import {Card} from 'react-bootstrap'
+import {Card,Row,Col} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import Star from '../Star'
 
-const Placecard = () => {
+const Placecard = ({place}) => {
   return (
     <div>
       <Link to='/place' style={{textDecoration:"none",color:"black"}}>
       <Card style={{ margin: "auto 2vw" }}>
         <Card.Img
+          style={{height:'14rem'}}
           variant="top"
-          src="https://www.honeymoonbug.com/blog/wp-content/uploads/2019/01/golden-triangle-tour-banner.jpg"
+          src={place && place.IMG}
+          // src='https://www.threetrekkers.com/wp-content/uploads/2020/08/DD-Hills-Bangalore-Banner.png'
         />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
+          <Card.Title>{place && place.PLACE_NAME}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            <Row>
+              <Col>
+                <div>{place && place.LOCATION}</div>
+              </Col>
+              <Col >
+                <Star n={place && place.RATING}/>
+              </Col>
+            </Row>
           </Card.Text>
         </Card.Body>
       </Card>
