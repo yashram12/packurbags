@@ -1,11 +1,15 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import Logincontext from "../../contexts/Logincontext";
 
 const Logincomp = ({ handlereg }) => {
+
   const [user, setUser] = useState({ email: "", pass: "" });
 
   const [err, setErr] = useState("");
+
+  const {setLoggedIn,setAdmin} = useContext(Logincontext);
 
   const history = useNavigate();
 
@@ -16,6 +20,11 @@ const Logincomp = ({ handlereg }) => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
+
+  const timeout =()=>{
+    setLoggedIn(false);
+    localStorage.clear();
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,9 +39,16 @@ const Logincomp = ({ handlereg }) => {
       .then((response) => response.json())
       .then((json) => {
         if(json.status === 'success'){
+          setLoggedIn(true)
           localStorage.setItem('pubtoken',json.token)
-          history('/')
+          if(user.email === 'admin@admin.com' && user.pass === 'Shark@123'){
+            setAdmin(true)
+            history('/admin')
+          }
+          else
+            history('/')
           alert(json.message)
+          setTimeout(timeout,600000)
         }
         else{
           setErr("Invalid Credentials...")

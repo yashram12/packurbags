@@ -4,7 +4,10 @@ import Carouselmain from "./home/Carouselmain";
 import Searchbar from "./home/Searchbar";
 import Info from "./home/Info";
 
+
 const Home = () => {
+
+
   return (
     <div>
       <Carouselmain />

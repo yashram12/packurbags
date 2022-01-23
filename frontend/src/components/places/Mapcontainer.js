@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "dotenv/config"
 import {
   GoogleMap,
   LoadScript,
@@ -11,12 +12,12 @@ const Mapcontainer = ({ name, coords }) => {
 
   
   const mapStyles = {
-    height: "80vh",
-    width: "90%",
+    height: "50vh",
+    width: "100%",
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyCJvaBJZXo3I8tvsLAC6lxANy536KuGtS8">
+    <LoadScript googleMapsApiKey={process.env.MAPS_API}>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={13}

@@ -2,6 +2,7 @@ import express, { json } from "express";
 import conn from "./db.js";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
+import 'dotenv/config'
 
 const app = express();
 
@@ -15,7 +16,7 @@ const auth = (req, res, next) => {
       message: "no token",
     });
   try {
-    const decoded = jwt.verify(token, "secret");
+    const decoded = jwt.verify(token, process.env.SECRETKEY);
     req.user = decoded.id;
     next();
   } catch (e) {
@@ -90,7 +91,7 @@ app.post("/api/v1/login", async (req, res) => {
   const { username, password } = req.body;
 
   //queries used in this route
-  const selectPass = `SELECT USER_ID,PASSWORD FROM auth WHERE USERNAME='${username}';`;
+  const selectPass = `SELECT U.FNAME,A.USER_ID,A.PASSWORD FROM auth A,user U WHERE A.USER_ID=U.USER_ID AND USERNAME='${username}';`;
 
   //quering db for getting stored(hashed) password
   conn.query(selectPass, async (err, result) => {
@@ -103,7 +104,7 @@ app.post("/api/v1/login", async (req, res) => {
       //validating the password
       const valid = await bcrypt.compare(password, result[0].PASSWORD);
       if (valid) {
-        const token = jwt.sign({ id: result[0].USER_ID }, "secret", {
+        const token = jwt.sign({ id: result[0].USER_ID,user: result[0].FNAME }, process.env.SECRETKEY, {
           expiresIn: 600,
         });
         res
@@ -126,7 +127,7 @@ app.get("/api/v1/user", auth, async (req, res) => {
       if (err) return res.status(501).json({ message: "user not found" });
       else {
         res.status(200).json({
-          message: "success",
+          status: "success",
           data: result[0],
         });
       }

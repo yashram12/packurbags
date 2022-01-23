@@ -1,4 +1,5 @@
 import { useState} from "react";
+import 'dotenv/config'
 import Star from '../Star';
 import {Container,Row} from 'react-bootstrap'
 import {
@@ -23,20 +24,22 @@ const [myLoc,setMyLoc] =useState({});
 
   
   return (
-    <LoadScript googleMapsApiKey="AIzaSyCJvaBJZXo3I8tvsLAC6lxANy536KuGtS8">
+    <LoadScript googleMapsApiKey={process.env.MAPS_API}>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={9}
-        center={list[Math.floor(list.length / 2)].coordinates}
+        // center={list[Math.floor(list.length / 2)].coordinates}
+        center={myLoc}
         onClick={()=>setHovered({})}
       > 
 
         {navigator.geolocation && navigator.geolocation.getCurrentPosition((pos)=>{
+          console.log(pos.coords)
           setMyLoc({lat:pos.coords.latitude,lng:pos.coords.longitude})
         })}
+        {console.log(myLoc)}
 
-
-        <Marker key={-1} position={myLoc && myLoc} onMouseOver={()=>setHovered({placeId:-1,name:"My Location",coordinates:(myLoc && myLoc),star:-1})} onMouseDown={()=>setHovered({})} />
+        <Marker key={-1} position={myLoc && myLoc} onMouseOver={()=>setHovered({placeId:-1,name:"My Location",coordinates:myLoc && myLoc,star:-1})} onMouseDown={()=>setHovered({})} />
         
         {list.map((item,i) => {
           return (

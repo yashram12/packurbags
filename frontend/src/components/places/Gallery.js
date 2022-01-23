@@ -1,5 +1,5 @@
 import {useState , useEffect} from 'react'
-import { Carousel } from 'react-carousel-minimal';
+import {Carousel, Container,Row,Col} from 'react-bootstrap'
 
 const Gallery = ({pid})=> {
 
@@ -19,50 +19,31 @@ const Gallery = ({pid})=> {
 
   }, [pid]);
   
-  const captionStyle = {
-    fontSize: '1em',
-    fontWeight: 'bold',
-  }
-  const slideNumberStyle = {
-    fontSize: '1rem',
-    fontWeight: 'bold',
-  }
+
   return (
-    <div style={{marginBottom:'6rem'}}>
-      <div style={{ textAlign: "center" }}>
-        <h2>Image Gallery</h2>
-        <div style={{
-            display:'flex',
-            justifyContent:'center',
-          padding: "0 20px"
-        }}>
-          <Carousel
-            data={images}
-            time={6000}
-            width="80vw"
-            height="500px"
-            captionStyle={captionStyle}
-            radius="10px"
-            slideNumber={true}
-            slideNumberStyle={slideNumberStyle}
-            captionPosition="bottom"
-            automatic={false}
-            dots={false}
-            pauseIconColor="white"
-            pauseIconSize="40px"
-            slideBackgroundColor="gainsboro"
-            slideImageFit="cover"
-            thumbnails={true}
-            thumbnailWidth="100px"
-            style={{
-              textAlign: "center",
-              maxWidth: "100vw",
-              maxHeight: "500px",
-              margin: "40px auto",
-            }}
-          />
-        </div>
-      </div>
+
+    <div className='my-5'>
+      <Container style={{maxWidth:'96%'}} className='my-5'>
+        <Row>
+          <Col style={{display:'flex',alignItems:"center",justifyContent:"center",marginBottom:"1rem"}} ><h1>Image Gallery</h1></Col>
+          <Col>
+              <Carousel variant='dark'>
+                {images && images.map((image,i)=>{
+                  return(
+                    <Carousel.Item key={i}>
+                      <img
+                        style={{height:"24rem",width:"40rem"}}
+                        className="d-block"
+                        src={image.image}
+                        alt={`slide-${i+1}`}
+                      />
+                    </Carousel.Item>
+                  )
+                })}
+              </Carousel>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

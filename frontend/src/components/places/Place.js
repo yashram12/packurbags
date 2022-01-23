@@ -93,21 +93,24 @@ const Place = () => {
           );
         })}
 
-
-      <Row className="text-center m-5">
-        <h2>Location</h2>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Mapcontainer
-            name={place[0] && place[0].PLACE_NAME}
-            coords={
-              coords[0] && {
-                lat:coords[0].LAT,
-                lng:coords[0].LNG,
+      <Container>
+      <Row className='my-5'>
+        <Col lg={{span:6,order:1}} md={{span:12,order:2}} sm={{span:12,order:2}} xs={{span:12,order:2}}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Mapcontainer
+              name={place[0] && place[0].PLACE_NAME}
+              coords={
+                coords[0] && {
+                  lat:coords[0].LAT,
+                  lng:coords[0].LNG,
+                }
               }
-            }
-          />
-        </div>
+            />
+          </div>
+        </Col>
+        <Col lg={{span:6,order:2}} md={{span:12,order:1}} sm={{span:12,order:1}} xs={{span:12,order:1}} style={{display:"flex",justifyContent:'center',alignItems:"center",marginBottom:"1rem"}}><h1>Location</h1></Col>
       </Row>
+      </Container>
 
       <Row>
         <Gallery pid={pid}/>
@@ -129,15 +132,7 @@ const Place = () => {
       </Row>
           {console.log(reviews)}
       <Row>
-        {/* <Review />
-        <Review />
-        <Review />
-        <Review />
-        <Review />
-        <Review />
-        <Review /> */}
-
-        {reviews.map((review)=>{
+           {reviews.map((review)=>{
             return(<Review key={review.RID} data={review}/>)
         })}
 
