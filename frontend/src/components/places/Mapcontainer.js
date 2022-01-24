@@ -17,7 +17,7 @@ const Mapcontainer = ({ name, coords }) => {
   };
 
   return (
-    <LoadScript googleMapsApiKey={process.env.MAPS_API}>
+    <LoadScript googleMapsApiKey='AIzaSyCJvaBJZXo3I8tvsLAC6lxANy536KuGtS8'>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={13}
