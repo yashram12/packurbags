@@ -5,7 +5,7 @@ import Star from '../Star'
 const Placecard = ({place}) => {
   return (
     <div>
-      <Link to='/place' style={{textDecoration:"none",color:"black"}}>
+      <Link to={`/place/${place && place.PLACE_ID}`} style={{textDecoration:"none",color:"black"}}>
       <Card style={{ margin: "auto 2vw" }}>
         <Card.Img
           style={{height:'14rem'}}

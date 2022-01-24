@@ -5,7 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 
 const Placewindow = () => {
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState({});
 
   const responsive = {
     superLargeDesktop: {

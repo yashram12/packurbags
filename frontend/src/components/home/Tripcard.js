@@ -4,7 +4,7 @@ import {Card} from 'react-bootstrap'
 const Tripcard = ({trip}) => {
     return (
         <div>
-            <Link to="/tour" style={{textDecoration:"none",color:"black"}}>
+            <Link to={`/tour/${trip && trip.TRIP_ID}`} style={{textDecoration:"none",color:"black"}}>
             <Card style={{ margin: "auto 2vw" }}>
             <Card.Img
             style={{height:"14rem"}}

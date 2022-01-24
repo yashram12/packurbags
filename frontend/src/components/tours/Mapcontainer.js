@@ -37,7 +37,6 @@ const [myLoc,setMyLoc] =useState({});
           console.log(pos.coords)
           setMyLoc({lat:pos.coords.latitude,lng:pos.coords.longitude})
         })}
-        {console.log(myLoc)}
 
         <Marker key={-1} position={myLoc && myLoc} onMouseOver={()=>setHovered({placeId:-1,name:"My Location",coordinates:myLoc && myLoc,star:-1})} onMouseDown={()=>setHovered({})} />
         
