@@ -1,12 +1,17 @@
 import express, { json } from "express";
+import path from 'path'
 import conn from "./db.js";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 import 'dotenv/config'
 
 const app = express();
+const __dirname = path.resolve();
 
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
 
 const auth = (req, res, next) => {
   const token = req.header("authorization");
