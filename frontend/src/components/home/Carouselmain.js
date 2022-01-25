@@ -13,8 +13,8 @@ const Carouselmain = () => {
             height="300vh"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>A journey of a thousand miles begins with a single step</h3>
+            <p>– Lao Tzu</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
@@ -25,8 +25,8 @@ const Carouselmain = () => {
             height="300vh"
           />
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Traveling – it leaves you speechless, then turns you into a storyteller</h3>
+            <p> – Ibn Battuta</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
@@ -37,9 +37,9 @@ const Carouselmain = () => {
             height="300vh"
           />
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>Take only memories, leave only footprints </h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            – Chief Seattle
             </p>
           </Carousel.Caption>
         </Carousel.Item>
