@@ -2,8 +2,7 @@ import {useContext} from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap'
 import Logincontext from '../contexts/Logincontext'
-// import jwt from "jsonwebtoken";
-
+import Logo from '../images/logo.png';
 
 const Navbarcomp = () => {
 
@@ -16,7 +15,7 @@ const Navbarcomp = () => {
             <Navbar bg="success" variant="dark" expand="lg" style={{zIndex:"100"}}>
                 <Container fluid>
                     <LinkContainer to='/' style={{backgroundColor:"#198754"}}>
-                        <Navbar.Brand style={{marginLeft:"40px"}}>PaCkUrBaGs</Navbar.Brand>
+                        <Navbar.Brand style={{marginLeft:"60px"}}><img src={Logo} alt='logo' style={{height:"24px",margin:"auto 1rem"}}/><span style={{fontSize:"20px",fontWeight:"500"}}>VisitorsYard</span></Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">

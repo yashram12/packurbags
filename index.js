@@ -143,7 +143,7 @@ app.get("/api/v1/user", auth, async (req, res) => {
 app.put("/api/v1/user", auth, async (req, res) => {
   const uid = req.user;
   if (!uid) {
-    res.status(401).json({ message: "no user to update..." });
+    res.status(401).json({ status:"not found", message: "no user to update..." });
   } else {
     const changed = Object.entries(req.body);
     changed.map((el) => {
@@ -151,11 +151,11 @@ app.put("/api/v1/user", auth, async (req, res) => {
         `UPDATE user SET ${el[0]}='${el[1]}' WHERE USER_ID=${uid};`,
         (err) => {
           if (err)
-            return res.status(501).json({ message: "user not found..." });
+            return res.status(501).json({ status:"not found",message: "user not found..." });
         }
       );
     });
-    res.status(200).json({ message: "user updated successfully  :)" });
+    res.status(200).json({status:'success', message: "user updated successfully  :)" });
   }
 });
 
@@ -257,17 +257,19 @@ app.post("/api/v1/review", auth, async (req, res) => {
   }
 });
 
-app.get("/api/v1/review", auth, async (req, res) => {
+app.get("/api/v1/review",auth, async (req, res) => {
   conn.query(
-    `SELECT * FROM review WHERE USER_ID=${req.user}`,
+    `SELECT R.RID,R.RTITLE,R.RDESC,R.RATING,P.PLACE_NAME FROM review R,place P WHERE P.PLACE_ID=R.PLACE_ID AND R.USER_ID=${req.user};`,
     (err, result) => {
-      if (err)
+      if (err){
+        console.log(err)
         return res
           .status(501)
-          .json({ message: "user does not have any reviews" });
+          .json({ status:'success',message: "user does not have any reviews" });
+      }
       else {
         res.status(200).json({
-          message: "success",
+          status: "success",
           data: result,
         });
       }
