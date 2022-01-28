@@ -22,6 +22,7 @@ const Logincomp = ({ handlereg }) => {
   };
 
   const timeout =()=>{
+    setAdmin(false)
     setLoggedIn(false);
     localStorage.clear();
   }

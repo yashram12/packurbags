@@ -230,9 +230,16 @@ const Registercomp = ({ handlereg }) => {
                 I agree for the terms and conditions.
               </label>
             </div>
-            <button type="submit" className="btn btn-success">
-              Submit
-            </button>
+            <Row>
+              <Col>
+                <button type="submit" className="btn btn-success">
+                  Submit
+                </button>
+              </Col>
+              <Col>
+                <div onClick={()=>handlereg()} style={{cursor:"pointer",color:'skyblue'}}>I already have an account</div>
+              </Col>
+            </Row>
           </form>{" "}
         </Col>
       </Row>

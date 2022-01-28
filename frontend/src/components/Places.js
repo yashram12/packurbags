@@ -25,6 +25,20 @@ const Places = () => {
     }
   }
 
+  const handleDelete = (i)=>{
+    fetch(`/api/v1/place/${i}`,{
+      method:"DELETE",
+      headers:{"authorization":localStorage.getItem('pubtoken')}
+    })
+    .then(response=>response.json())
+    .then(json=>{
+      if(json.status === 'success'){
+        alert('Place deleted Successfully...')
+        setPlaces(places.filter(place=>{return place.PLACE_ID !== i}))
+      }
+    })
+  }
+
   return (
     <>
       <div
@@ -55,7 +69,7 @@ const Places = () => {
         </Row>
         <Row>
           {places.map((place,i) => {
-            return <Cardcomp key={i} place={place} />;
+            return <Cardcomp key={i} place={place} handleDelete={handleDelete}/>;
           })}
         </Row>
       </Container>

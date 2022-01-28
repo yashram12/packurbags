@@ -32,9 +32,17 @@ const auth = (req, res, next) => {
   }
 };
 
+
+
+
+
 app.get("/", async (req, res) => {
   res.send(`This is home route for the user ${req.user}`);
 });
+
+
+
+
 
 app.post("/api/v1/register", async (req, res) => {
   //getting data from client
@@ -140,6 +148,18 @@ app.get("/api/v1/user", auth, async (req, res) => {
   );
 });
 
+app.get("/api/v1/users",auth,async(req,res)=>{
+  conn.query(`SELECT U.USER_ID,U.FNAME,U.LNAME,U.PHONE,R.NO_OF_REVIEWS FROM user U LEFT OUTER JOIN USER_REVIEWS R ON U.USER_ID=R.USER_ID;`,(err,result)=>{
+    if(err) console.log(err)
+    else{
+      res.status(200).json({
+        status:'success',
+        data:result
+      })
+    }
+  })
+})
+
 app.put("/api/v1/user", auth, async (req, res) => {
   const uid = req.user;
   if (!uid) {
@@ -159,21 +179,21 @@ app.put("/api/v1/user", auth, async (req, res) => {
   }
 });
 
-app.get("/api/v1/coords/:pid", async (req, res) => {
-  const pid = req.params.pid;
-  conn.query(
-    `SELECT LAT,LNG FROM coordinates WHERE PLACE_ID='${pid}';`,
-    (err, result) => {
-      if (err) console.log(err);
-      else {
-        res.status(200).json({
-          status: "success",
-          data: result,
-        });
-      }
+app.delete("/api/v1/user/:uid",auth,async(req,res)=>{
+  const uid = req.params.uid;
+  conn.query(`DELETE FROM user WHERE USER_ID='${uid}';`,(err,result)=>{
+    if(err) console.log(err)
+    else{
+      res.status(200).json({
+        status:"success",
+        message:"User deleted successfully..."
+      })
     }
-  );
-});
+  })
+})
+
+
+
 
 app.get("/api/v1/review/:pid", async (req, res) => {
   const pid = req.params.pid;
@@ -267,6 +287,38 @@ app.get("/api/v1/review",auth, async (req, res) => {
           .status(501)
           .json({ status:'success',message: "user does not have any reviews" });
       }
+      else {
+        res.status(200).json({
+          status: "success",
+          data: result,
+        });
+      }
+    }
+  );
+});
+
+app.delete("/api/v1/review/:rid",auth,async (req,res)=>{
+  const rid = req.params.rid;
+  conn.query(`DELETE FROM review WHERE RID='${rid}';`,(err,result)=>{
+    if(err) console.log(err)
+    else{
+      res.status(200).json({
+        status:"success",
+        message:'Review deleted successfully...'
+      })
+    }
+  })
+})
+
+
+
+
+app.get("/api/v1/coords/:pid", async (req, res) => {
+  const pid = req.params.pid;
+  conn.query(
+    `SELECT LAT,LNG FROM coordinates WHERE PLACE_ID='${pid}';`,
+    (err, result) => {
+      if (err) console.log(err);
       else {
         res.status(200).json({
           status: "success",
@@ -383,6 +435,23 @@ app.post("/api/v1/place", async (req, res) => {
     }
   );
 });
+
+app.delete("/api/v1/place/:id",auth,async (req,res)=>{
+  const id = req.params.id;
+  conn.query(`DELETE FROM place WHERE PLACE_ID='${id}';`,(err,result)=>{
+    if(err) console.log(err)
+    else{
+      res.status(200).json({
+        status:'success',
+        message:"Place deleted successfully..."
+      })
+    }
+  })
+
+})
+
+
+
 
 app.get("/api/v1/tours/:id", async (req, res) => {
   const id = req.params.id;
@@ -505,6 +574,21 @@ app.post("/api/v1/tour", (req, res) => {
   });
 
 });
+
+app.delete("/api/v1/tours/:id",auth,(req,res)=>{
+  const id = req.params.id;
+  conn.query(`DELETE FROM trip WHERE TRIP_ID='${id}';`,(err,result)=>{
+    if(err) console.log(err)
+    else{
+      res.status(200).json({
+        status:"success",
+        message:"Tour deleted successfully..."
+      })
+    }
+  })
+})
+
+
 
 app.post("/pub", (req, res) => {
     const { img, name, places, myLoc } = req.body;

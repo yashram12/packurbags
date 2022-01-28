@@ -28,6 +28,24 @@ const Tours = () => {
     }
   }
 
+  const handleDelete = (i)=>{
+    fetch(`/api/v1/tours/${i}`,{
+      method:"DELETE",
+      headers:{"authorization":localStorage.getItem('pubtoken')}
+    })
+    .then(response=>response.json())
+    .then(json=>{
+      if(json.status === 'success'){
+        alert('Tour deleted Successfully...')
+        setTrips(trips.filter(trip=>{return trip.TRIP_ID !== i}))
+      }
+      else{
+        alert('session expired...')
+        history('/login')
+      }
+    })
+  }
+
   return (
     <>
       <div
@@ -58,7 +76,7 @@ const Tours = () => {
         </Row>
         <Row>
           {trips.map((trip, id) => {
-            return <Cardcomp key={id} trip={trip} />;
+            return <Cardcomp key={id} trip={trip} handleDelete={handleDelete} />;
           })}
         </Row>
       </Container>

@@ -8,12 +8,12 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const [edit,setEdit] = useState(false);
   const [reviews,setReviews] = useState([]);
-  const { setLoggedIn } = useContext(Logincontext);
+  const { setLoggedIn ,setAdmin} = useContext(Logincontext);
   const history = useNavigate();
 
 
   useEffect(() => {
-    fetch("/api/v1/user", {
+    fetch(`/api/v1/user`, {
       method: "GET",
       headers: { "authorization": localStorage.getItem("pubtoken") },
     })
@@ -22,6 +22,7 @@ const Profile = () => {
         if (json.status === "success") setUser(json.data);
         else {
           alert("Session Expired...");
+          setAdmin(false);
           setLoggedIn(false);
           localStorage.clear();
           history("/login");
@@ -44,6 +45,7 @@ const Profile = () => {
 
   const logout = () => {
     alert("Logged out");
+    setAdmin(false)
     setLoggedIn(false);
     localStorage.clear();
     history("/login");
@@ -239,7 +241,6 @@ const Profile = () => {
         </Row>
         <Row className="my-3">
           <div><h3>Your Reviews</h3></div>
-          {console.log(reviews)}
           {reviews.map((review)=>{
             console.log('review')
               return(<Review key={review.RID} data={review}/>)

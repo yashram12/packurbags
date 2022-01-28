@@ -17,11 +17,9 @@ const Star = (props) => {
     }
     
     return (
-        <div>
             <ul style={{listStyleType:"none",display:"flex",flexDirection:'row',justifyContent:"flex-start",width:'100%'}}>
             {stars(props.n)}
         </ul>
-        </div>
     )
 }
 

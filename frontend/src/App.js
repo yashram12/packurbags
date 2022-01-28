@@ -26,6 +26,8 @@ function App() {
       try{
         const decripted = jwt.verify(localStorage.getItem("pubtoken"), "secret");
         if (decripted.id) {
+          if(decripted.user === 'vivek &')
+            setAdmin(true)
           setLoggedIn(true);
         }
       }catch(e){
@@ -37,7 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Logincontext.Provider value={{ loggedIn, setLoggedIn, setAdmin }}>
+        <Logincontext.Provider value={{ loggedIn, setLoggedIn, setAdmin ,admin}}>
             <Navbarcomp />
             <Routes>
               <Route path="/" element={<Home />} />
